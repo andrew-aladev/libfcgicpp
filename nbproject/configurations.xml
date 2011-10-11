@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="69">
   <logicalFolder name="root" displayName="root" projectFiles="true">
-    <df name="fcgi_client" root=".">
+    <df name="libfcgipp" root=".">
       <df name="CMakeFiles" kind="SOURCE_LOGICAL_FOLDER">
         <df name="CMakeTmp" kind="SOURCE_LOGICAL_FOLDER">
           <df name="CMakeFiles" kind="SOURCE_LOGICAL_FOLDER">
@@ -16,19 +16,6 @@
           <in>CMakeCXXCompilerId.cpp</in>
         </df>
         <df name="fcgi_client.dir">
-          <in>CXX.includecache</in>
-          <in>DependInfo.cmake</in>
-          <in>build.make</in>
-          <in>cmake_clean.cmake</in>
-          <in>depend.internal</in>
-          <in>depend.make</in>
-          <in>flags.make</in>
-          <in>link.txt</in>
-          <in>progress.make</in>
-        </df>
-        <df name="test_client.dir" kind="SOURCE_LOGICAL_FOLDER">
-        </df>
-        <df name="test_server.dir" kind="SOURCE_LOGICAL_FOLDER">
         </df>
       </df>
       <in>Client.cpp</in>
@@ -46,13 +33,13 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>CMakeLists.txt</itemPath>
       <itemPath>Makefile</itemPath>
-      <itemPath>Makefile-fcgi_client.mk</itemPath>
+      <itemPath>Makefile-libfcgipp.mk</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
   </sourceRootList>
-  <projectmakefile>Makefile-fcgi_client.mk</projectmakefile>
+  <projectmakefile>Makefile-libfcgipp.mk</projectmakefile>
   <confs>
     <conf name="Default" type="0">
       <toolsSet>

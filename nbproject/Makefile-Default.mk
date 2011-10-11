@@ -26,7 +26,7 @@ CND_CONF=Default
 CND_DISTDIR=dist
 
 # Include project Makefile
-include Makefile-fcgi_client.mk
+include Makefile-libfcgipp.mk
 
 # Object Directory
 OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}

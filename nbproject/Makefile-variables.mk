@@ -12,5 +12,5 @@ CND_ARTIFACT_DIR_Default=
 CND_ARTIFACT_NAME_Default=
 CND_ARTIFACT_PATH_Default=
 CND_PACKAGE_DIR_Default=dist/Default/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Default=fcgiclient.tar
-CND_PACKAGE_PATH_Default=dist/Default/GNU-Linux-x86/package/fcgiclient.tar
+CND_PACKAGE_NAME_Default=libfcgipp.tar
+CND_PACKAGE_PATH_Default=dist/Default/GNU-Linux-x86/package/libfcgipp.tar
