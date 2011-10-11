@@ -1,1 +1,3 @@
-Project just started. When all specification will be satified release (tag on github) will be created.
+Project just started. When all specification will be satified, release (tag on github) will be created.
+Project is developed with cmake 2.8.5, boost 1.46.1
+FastCGI [Specification](http://www.fastcgi.com/devkit/doc/fcgi-spec.html)
