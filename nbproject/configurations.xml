@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="69">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <df name="fcgi_client" root=".">
+      <df name="CMakeFiles" kind="SOURCE_LOGICAL_FOLDER">
+        <df name="CMakeTmp" kind="SOURCE_LOGICAL_FOLDER">
+          <df name="CMakeFiles" kind="SOURCE_LOGICAL_FOLDER">
+            <df name="cmTryCompileExec.dir" kind="SOURCE_LOGICAL_FOLDER">
+            </df>
+          </df>
+        </df>
+        <df name="CompilerIdC" kind="SOURCE_LOGICAL_FOLDER">
+          <in>CMakeCCompilerId.c</in>
+        </df>
+        <df name="CompilerIdCXX" kind="SOURCE_LOGICAL_FOLDER">
+          <in>CMakeCXXCompilerId.cpp</in>
+        </df>
+        <df name="fcgi_client.dir">
+          <in>CXX.includecache</in>
+          <in>DependInfo.cmake</in>
+          <in>build.make</in>
+          <in>cmake_clean.cmake</in>
+          <in>depend.internal</in>
+          <in>depend.make</in>
+          <in>flags.make</in>
+          <in>link.txt</in>
+          <in>progress.make</in>
+        </df>
+        <df name="test_client.dir" kind="SOURCE_LOGICAL_FOLDER">
+        </df>
+        <df name="test_server.dir" kind="SOURCE_LOGICAL_FOLDER">
+        </df>
+      </df>
+      <in>Client.cpp</in>
+      <in>Client.hpp</in>
+      <in>Connection.cpp</in>
+      <in>Connection.hpp</in>
+      <in>Header.cpp</in>
+      <in>Header.hpp</in>
+      <in>Spec.hpp</in>
+      <in>index.cpp</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>Makefile</itemPath>
+      <itemPath>Makefile-fcgi_client.mk</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile-fcgi_client.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>$(MAKE) -f Makefile</buildCommand>
+          <cleanCommand>$(MAKE) -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>/usr/include/boost/asio/impl</pElem>
+              <pElem>/usr/include/boost/detail</pElem>
+              <pElem>/usr/include/boost</pElem>
+              <pElem>/usr/include/boost/config</pElem>
+              <pElem>/usr/include/boost/date_time</pElem>
+              <pElem>/usr/include/boost/asio/local</pElem>
+              <pElem>/usr/include/boost/mpl</pElem>
+              <pElem>/usr/include/boost/asio/local/detail</pElem>
+              <pElem>/usr/include/boost/smart_ptr/detail</pElem>
+              <pElem>/usr/include/boost/bind</pElem>
+              <pElem>/usr/include/boost/asio/detail/impl</pElem>
+              <pElem>/usr/include/boost/asio</pElem>
+              <pElem>/usr/include/boost/asio/posix</pElem>
+              <pElem>/usr/include/boost/mpl/aux_</pElem>
+              <pElem>/usr/include/boost/system</pElem>
+              <pElem>/usr/include/boost/date_time/gregorian</pElem>
+              <pElem>/usr/include/boost/exception</pElem>
+              <pElem>/usr/include/boost/utility</pElem>
+              <pElem>/usr/include/boost/regex/v4</pElem>
+              <pElem>.</pElem>
+              <pElem>/usr/include/boost/asio/ip/detail</pElem>
+              <pElem>/usr/include/boost/type_traits/detail</pElem>
+              <pElem>/usr/include/boost/date_time/posix_time</pElem>
+              <pElem>/usr/include/boost/smart_ptr</pElem>
+              <pElem>/usr/include/boost/asio/ip</pElem>
+              <pElem>/usr/include/boost/asio/detail</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="CMakeFiles/CompilerIdC/CMakeCCompilerId.c" ex="true" tool="0">
+      </item>
+      <item path="CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp" ex="true" tool="1">
+      </item>
+      <item path="Client.cpp" ex="false" tool="1">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/boost/asio/local/detail/impl</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="Connection.cpp" ex="false" tool="1">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/boost/asio/local/detail/impl</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="Spec.hpp" ex="true" tool="3">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
