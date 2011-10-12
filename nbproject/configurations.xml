@@ -15,7 +15,11 @@
         <df name="CompilerIdCXX" kind="SOURCE_LOGICAL_FOLDER">
           <in>CMakeCXXCompilerId.cpp</in>
         </df>
-        <df name="fcgi_client.dir">
+        <df name="fcgi_client.dir" kind="SOURCE_LOGICAL_FOLDER">
+        </df>
+        <df name="libfcgipp.dir" kind="SOURCE_LOGICAL_FOLDER">
+        </df>
+        <df name="Progress">
         </df>
       </df>
       <in>Client.cpp</in>
@@ -25,6 +29,7 @@
       <in>Header.cpp</in>
       <in>Header.hpp</in>
       <in>Spec.hpp</in>
+      <in>Util.hpp</in>
       <in>index.cpp</in>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -55,32 +60,7 @@
           <executablePath></executablePath>
           <ccTool>
             <incDir>
-              <pElem>/usr/include/boost/asio/impl</pElem>
-              <pElem>/usr/include/boost/detail</pElem>
-              <pElem>/usr/include/boost</pElem>
-              <pElem>/usr/include/boost/config</pElem>
-              <pElem>/usr/include/boost/date_time</pElem>
-              <pElem>/usr/include/boost/asio/local</pElem>
-              <pElem>/usr/include/boost/mpl</pElem>
-              <pElem>/usr/include/boost/asio/local/detail</pElem>
-              <pElem>/usr/include/boost/smart_ptr/detail</pElem>
-              <pElem>/usr/include/boost/bind</pElem>
-              <pElem>/usr/include/boost/asio/detail/impl</pElem>
-              <pElem>/usr/include/boost/asio</pElem>
-              <pElem>/usr/include/boost/asio/posix</pElem>
-              <pElem>/usr/include/boost/mpl/aux_</pElem>
-              <pElem>/usr/include/boost/system</pElem>
-              <pElem>/usr/include/boost/date_time/gregorian</pElem>
-              <pElem>/usr/include/boost/exception</pElem>
-              <pElem>/usr/include/boost/utility</pElem>
-              <pElem>/usr/include/boost/regex/v4</pElem>
               <pElem>.</pElem>
-              <pElem>/usr/include/boost/asio/ip/detail</pElem>
-              <pElem>/usr/include/boost/type_traits/detail</pElem>
-              <pElem>/usr/include/boost/date_time/posix_time</pElem>
-              <pElem>/usr/include/boost/smart_ptr</pElem>
-              <pElem>/usr/include/boost/asio/ip</pElem>
-              <pElem>/usr/include/boost/asio/detail</pElem>
             </incDir>
           </ccTool>
         </makeTool>
@@ -88,22 +68,6 @@
       <item path="CMakeFiles/CompilerIdC/CMakeCCompilerId.c" ex="true" tool="0">
       </item>
       <item path="CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp" ex="true" tool="1">
-      </item>
-      <item path="Client.cpp" ex="false" tool="1">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/boost/asio/local/detail/impl</pElem>
-          </incDir>
-        </ccTool>
-      </item>
-      <item path="Connection.cpp" ex="false" tool="1">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/boost/asio/local/detail/impl</pElem>
-          </incDir>
-        </ccTool>
-      </item>
-      <item path="Spec.hpp" ex="true" tool="3">
       </item>
     </conf>
   </confs>

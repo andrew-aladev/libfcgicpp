@@ -12,16 +12,24 @@ You should have received a copy of the GNU Lesser General Public License
 along with libfcgipp.  If not, see <http://www.gnu.org/licenses/>.
 
 Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
-*/
+ */
 #include "Header.hpp"
 #include "Spec.hpp"
 #include <iostream>
+#include <boost/lexical_cast.hpp>
 using namespace std;
+using namespace boost;
 
 void fcgi::Header::read(stringstream & stream) {
 	stream.flush();
-	stream.read((char *) &this->head, sizeof(spec::Header));
+	stream.read((char *) & this->head, FCGI_HEADER_LENGTH);
 	this->empty = false;
+
+	//if(this->head.version != FCGI_VERSION) {
+	BOOST_THROW_EXCEPTION(
+			HeaderInvalidException() << bad_version((int) this->head.version)
+			);
+	//}
 
 	cout << "content_length: " << (int) this->head.content_length_b1 << (int) this->head.content_length_b0 << endl;
 	cout << "padding_length: " << (int) this->head.padding_length << endl;

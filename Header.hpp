@@ -12,32 +12,39 @@ You should have received a copy of the GNU Lesser General Public License
 along with libfcgipp.  If not, see <http://www.gnu.org/licenses/>.
 
 Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
-*/
+ */
 #ifndef HEADER_HPP
 #define	HEADER_HPP
 
 #include <sstream>
+#include <boost/exception/all.hpp>
 
 #include "Spec.hpp"
 
 namespace fcgi {
-    using namespace std;
+	using namespace std;
 
-    class Header {
-    private:
-        spec::Header head;
-        bool empty;
+	class Header {
+	private:
+		spec::Header head;
+		bool empty;
 
-    public:
+	public:
 
-        Header() {
-            this->empty = true;
-        }
-        bool isEmpty() const {
-            return this->empty;
-        }
-        void read(stringstream & stream);
-    };
+		Header() {
+			this->empty = true;
+		}
+
+		inline bool isEmpty() const {
+			return this->empty;
+		}
+		void read(stringstream & stream);
+	};
+
+	typedef boost::error_info<struct tag_bad_version, int> bad_version;
+
+	class HeaderInvalidException : public virtual exception, public virtual boost::exception {
+	};
 }
 
 #endif	/* HEADER_HPP */

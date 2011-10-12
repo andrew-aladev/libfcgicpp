@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 2.8.2)
 project (libfcgipp)
 
-SET(CMAKE_BUILD_TYPE Debug)
-SET(CMAKE_CXX_FLAGS_DEBUG "-O2 -g")
+SET(CMAKE_BUILD_TYPE Develop)
+SET(CMAKE_CXX_FLAGS_DEVELOP "-O0 -g")
 
 set(CMAKE_VERBOSE_MAKEFILE on)
 set (Boost_USE_MULTITHREADED on)

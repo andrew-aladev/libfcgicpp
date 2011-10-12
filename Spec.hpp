@@ -12,15 +12,59 @@ You should have received a copy of the GNU Lesser General Public License
 along with libfcgipp.  If not, see <http://www.gnu.org/licenses/>.
 
 Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
-*/
+ */
 #ifndef SPECIFICATION_HPP
 #define	SPECIFICATION_HPP
 #include <stdint.h>
 
+//----Header----
 #define FCGI_HEADER_LENGTH 8
+
+//version variants
 #define FCGI_VERSION 1
+
+//type variants
+#define FCGI_BEGIN_REQUEST     1
+#define FCGI_ABORT_REQUEST     2
+#define FCGI_END_REQUEST       3
+#define FCGI_PARAMS            4
+#define FCGI_STDIN             5
+#define FCGI_STDOUT            6
+#define FCGI_STDERR            7
+#define FCGI_DATA              8
+#define FCGI_GET_VALUES        9
+#define FCGI_GET_VALUES_RESULT 10
+#define FCGI_UNKNOWN_TYPE      11
+#define FCGI_MAXTYPE           12
+
+//request_id variants
+#define FCGI_NULL_REQUEST_ID 0
+
+//----Begin Request----
 #define FCGI_BEGIN_REQUEST_LENGTH 8
+
+//role variants
+#define FCGI_RESPONDER  1
+#define FCGI_AUTHORIZER 2
+#define FCGI_FILTER     3
+
+//----End Request----
 #define FCGI_END_REQUEST_LENGTH 8
+
+//protocol_status variants
+#define FCGI_REQUEST_COMPLETE 0
+#define FCGI_CANT_MPX_CONN    1
+#define FCGI_OVERLOADED       2
+#define FCGI_UNKNOWN_ROLE     3
+
+//----Unknown----
+#define FCGI_UNKNOWN_LENGTH 8
+
+//----FCGI_GET_VALUES / FCGI_GET_VALUES_RESULT----
+#define FCGI_MAX_CONNS  "FCGI_MAX_CONNS"
+#define FCGI_MAX_REQS   "FCGI_MAX_REQS"
+#define FCGI_MPXS_CONNS "FCGI_MPXS_CONNS"
+
 namespace fcgi {
 
 	namespace spec {

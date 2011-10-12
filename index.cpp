@@ -17,6 +17,7 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #include <iostream>
 #include <string>
 #include <boost/asio.hpp>
+#include <boost/exception/all.hpp>
 #include "Client.hpp"
 using namespace std;
 using namespace fcgi;
@@ -27,8 +28,10 @@ int main() {
 		Client cl(string("/tmp/fcgi_test.sock"), io_service);
 		cl.start_accept();
 		io_service.run();
-	} catch (std::exception& e) {
-		std::cerr << e.what() << std::endl;
+	} catch(boost::exception &e) {
+		cerr << boost::diagnostic_information(e) << endl;
+	} catch (std::exception &e) {
+		cerr << e.what() << endl;
 	}
 	return 0;
 }
