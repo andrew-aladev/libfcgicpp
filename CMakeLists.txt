@@ -19,10 +19,10 @@ include_directories (
 
 add_executable (
     libfcgipp
-	index.cpp
-	Connection.cpp
-	Client.cpp
-	Header.cpp
+	src/test/index.cpp
+	src/test/Client.cpp
+	src/fcgi/Connection.cpp
+	src/fcgi/Header.cpp
 	)
 target_link_libraries (
 	libfcgipp

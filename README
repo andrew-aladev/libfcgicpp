@@ -1,4 +1,16 @@
 Licensed under GNU Lesser General Public License. http://www.gnu.org/licenses/lgpl.txt
 Project just started. When all specification will be satified, release (tag on github) will be created.
-Project is developed with cmake 2.8.5, boost 1.46.1
+Project is developed with cmake 2.8.5, boost 1.46.1. I prefer netbeans for code highlighting
+I am not using TDD to develop. Specification will be created later
+Nginx conf to test:
+	location /fcgi_test {
+                autoindex off;
+                include fastcgi_params;
+                fastcgi_pass unix:/tmp/fcgi_test.sock;
+                fastcgi_split_path_info ^(/fcgi_test)(.*)$;
+                fastcgi_param SCRIPT_NAME /path/to/cpp/libfcgipp/lifcgipp;
+                fastcgi_param PATH_INFO $fastcgi_path_info;
+        }
+Please check that nginx has enough rights to access fcgi_test.sock which is created by libfcgipp binary
+For debug in netbeans check that "Project Properties -> Run -> Console Type" equals "Output Window" and gdb is installed
 FastCGI Specification http://www.fastcgi.com/devkit/doc/fcgi-spec.html

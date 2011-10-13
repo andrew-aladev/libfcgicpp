@@ -15,11 +15,7 @@
         <df name="CompilerIdCXX" kind="SOURCE_LOGICAL_FOLDER">
           <in>CMakeCXXCompilerId.cpp</in>
         </df>
-        <df name="fcgi_client.dir" kind="SOURCE_LOGICAL_FOLDER">
-        </df>
         <df name="libfcgipp.dir" kind="SOURCE_LOGICAL_FOLDER">
-        </df>
-        <df name="Progress">
         </df>
       </df>
       <in>Client.cpp</in>
@@ -57,7 +53,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>$(MAKE) -f Makefile</buildCommand>
           <cleanCommand>$(MAKE) -f Makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>./libfcgipp</executablePath>
           <ccTool>
             <incDir>
               <pElem>.</pElem>
