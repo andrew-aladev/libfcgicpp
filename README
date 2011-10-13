@@ -1,7 +1,7 @@
 Licensed under GNU Lesser General Public License. http://www.gnu.org/licenses/lgpl.txt
 Project just started. When all specification will be satified, release (tag on github) will be created.
 Project is developed with cmake 2.8.5, boost 1.46.1. I prefer netbeans for code highlighting
-I am not using TDD to develop. Specification will be created later
+I am not using TDD to develop. Tests will be created later
 Nginx conf to test:
 	location /fcgi_test {
                 autoindex off;
