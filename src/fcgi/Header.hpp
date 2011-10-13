@@ -17,10 +17,9 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #define	HEADER_HPP
 
 #include <sstream>
-#include <boost/exception/all.hpp>
-
 #include "Spec.hpp"
 #include "Util.hpp"
+#include "body/RequestBody.hpp"
 
 namespace fcgi {
 	using namespace std;
@@ -29,24 +28,33 @@ namespace fcgi {
 	private:
 		uint16_t request_id;
 		uint16_t content_length;
+		body::RequestBody *body;
 		spec::Header head;
-		bool empty;
+		bool head_empty;
+		bool body_empty;
 
 	public:
 
 		Header() {
-			this->empty = true;
+			this->head_empty = true;
+			this->body_empty = true;
 		}
+		~Header();
 
-		inline bool isEmpty() const {
-			return this->empty;
+		inline bool isHeadEmpty() const {
+			return this->head_empty;
 		}
-		void read(stringstream & stream);
+		inline bool isBodyEmpty() const {
+			return this->body_empty;
+		}
+		void resolveHead(stringstream & stream);
+		void resolveBody(stringstream & stream);
 	};
 
 	typedef boost::error_info<struct tag_bad_number, int> bad_number;
 
 	struct HeaderInvalidException : public Exception {
+
 		HeaderInvalidException(string msg) : Exception(msg) {
 		}
 	};

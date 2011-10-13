@@ -13,32 +13,24 @@ along with libfcgipp.  If not, see <http://www.gnu.org/licenses/>.
 
 Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
  */
-#ifndef UTIL_HPP
-#define	UTIL_HPP
-
-#include <string>
+#ifndef UNKNOWN_HPP
+#define	UNKNOWN_HPP
+#include "RequestBody.hpp"
+#include "../Spec.hpp"
 #include <sstream>
-#include <boost/exception/all.hpp>
 
 namespace fcgi {
-	using namespace std;
 
-	class Exception : public virtual exception, public virtual boost::exception {
-	private:
-		string msg;
-		
-	public:
-		Exception(string msg) {
-			this->msg = msg;
-		}
-		virtual ~Exception() throw() {
-			;
-		}
+	namespace body {
+		using namespace std;
 
-		virtual const char* what() const throw () {
-			return this->msg.c_str();
-		}
-	};
+		class Unknown : public RequestBody {
+		private:
+			spec::Unknown body;
+		public:
+			Unknown(stringstream & stream);
+		};
+	}
 }
 
-#endif	/* UTIL_HPP */
+#endif	/* UNKNOWN_HPP */

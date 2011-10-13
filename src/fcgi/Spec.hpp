@@ -40,26 +40,24 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 //request_id variants
 #define FCGI_NULL_REQUEST_ID 0
 
-//----Begin Request----
-#define FCGI_BEGIN_REQUEST_LENGTH 8
+//----Body----
+#define FCGI_BODY_LENGTH 8
 
+//----Begin Request----
 //role variants
 #define FCGI_RESPONDER  1
 #define FCGI_AUTHORIZER 2
 #define FCGI_FILTER     3
 
 //----End Request----
-#define FCGI_END_REQUEST_LENGTH 8
-
 //protocol_status variants
 #define FCGI_REQUEST_COMPLETE 0
 #define FCGI_CANT_MPX_CONN    1
 #define FCGI_OVERLOADED       2
 #define FCGI_UNKNOWN_ROLE     3
+#define FCGI_MAXROLE          3
 
 //----Unknown----
-#define FCGI_UNKNOWN_LENGTH 8
-
 //----FCGI_GET_VALUES / FCGI_GET_VALUES_RESULT----
 #define FCGI_MAX_CONNS  "FCGI_MAX_CONNS"
 #define FCGI_MAX_REQS   "FCGI_MAX_REQS"

@@ -49,6 +49,7 @@ namespace fcgi {
         }
 
         void handle_read(const error_code& ec, size_t bytes_transferred);
+		void close(error_code &ec);
 
     public:
         typedef shared_ptr<Connection> pointer;

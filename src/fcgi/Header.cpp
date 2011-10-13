@@ -17,15 +17,24 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #include "Spec.hpp"
 #include <iostream>
 #include <boost/lexical_cast.hpp>
+#include "body/BeginRequest.hpp"
+#include "body/EndRequest.hpp"
+#include "body/Unknown.hpp"
 using namespace std;
 using namespace boost;
 
-void fcgi::Header::read(stringstream & stream) {
+fcgi::Header::~Header() {
+	if(this->body) {
+		delete this->body;
+	}
+}
+
+void fcgi::Header::resolveHead(stringstream & stream) {
 	stream.flush();
 	stream.read((char *) & this->head, FCGI_HEADER_LENGTH);
 	this->request_id = (this->head.request_id_b1 << 8) + this->head.request_id_b0; //big endian
 	this->content_length = (this->head.content_length_b1 << 8) + this->head.content_length_b0; //big endian
-	this->empty = false;
+	this->head_empty = false;
 
 	if (this->head.version != FCGI_VERSION) {
 		stringstream text;
@@ -35,7 +44,7 @@ void fcgi::Header::read(stringstream & stream) {
 				);
 	}
 
-	if (this->head.type < 0 || this->head.type > FCGI_MAXTYPE) {
+	if (this->head.type <= 0 || this->head.type > FCGI_MAXTYPE) {
 		stringstream text;
 		text << "Header type should belongs to [0, " << FCGI_MAXTYPE << "]";
 		BOOST_THROW_EXCEPTION(
@@ -43,10 +52,49 @@ void fcgi::Header::read(stringstream & stream) {
 				);
 	}
 
+	cout << "<----Header---->" << endl;
 	cout << "content_length: " << (int) this->content_length << endl;
 	cout << "padding_length: " << (int) this->head.padding_length << endl;
 	cout << "request_id: " << (int) this->request_id << endl;
 	cout << "reserved: " << (int) this->head.reserved << endl;
 	cout << "type: " << (int) this->head.type << endl;
 	cout << "version: " << (int) this->head.version << endl;
+}
+
+void fcgi::Header::resolveBody(stringstream & stream) {
+	switch (this->head.type) {
+		case FCGI_BEGIN_REQUEST:
+			this->body = new body::BeginRequest(stream);
+			break;
+		case FCGI_ABORT_REQUEST:
+			break;
+		case FCGI_END_REQUEST:
+			this->body = new body::EndRequest(stream);
+			break;
+		case FCGI_PARAMS:
+			break;
+		case FCGI_STDIN:
+			break;
+		case FCGI_STDOUT:
+			break;
+		case FCGI_STDERR:
+			break;
+		case FCGI_DATA:
+			break;
+		case FCGI_GET_VALUES:
+			break;
+		case FCGI_GET_VALUES_RESULT:
+			break;
+		case FCGI_UNKNOWN_TYPE:
+			this->body = new body::Unknown(stream);
+			break;
+		default:
+			stringstream text;
+			text << "Could not resolve body";
+			BOOST_THROW_EXCEPTION(
+					HeaderInvalidException(text.str())
+					);
+			break;
+	}
+	this->body_empty = false;
 }

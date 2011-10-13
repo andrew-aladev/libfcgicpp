@@ -16,17 +16,38 @@
           <in>CMakeCXXCompilerId.cpp</in>
         </df>
         <df name="libfcgipp.dir" kind="SOURCE_LOGICAL_FOLDER">
+          <df name="src">
+            <df name="fcgi" kind="SOURCE_LOGICAL_FOLDER">
+              <df name="body">
+              </df>
+            </df>
+          </df>
         </df>
       </df>
-      <in>Client.cpp</in>
-      <in>Client.hpp</in>
-      <in>Connection.cpp</in>
-      <in>Connection.hpp</in>
-      <in>Header.cpp</in>
-      <in>Header.hpp</in>
-      <in>Spec.hpp</in>
-      <in>Util.hpp</in>
-      <in>index.cpp</in>
+      <df name="src">
+        <df name="fcgi">
+          <df name="body">
+            <in>BeginRequest.cpp</in>
+            <in>BeginRequest.hpp</in>
+            <in>EndRequest.cpp</in>
+            <in>EndRequest.hpp</in>
+            <in>RequestBody.hpp</in>
+            <in>Unknown.cpp</in>
+            <in>Unknown.hpp</in>
+          </df>
+          <in>Connection.cpp</in>
+          <in>Connection.hpp</in>
+          <in>Header.cpp</in>
+          <in>Header.hpp</in>
+          <in>Spec.hpp</in>
+          <in>Util.hpp</in>
+        </df>
+        <df name="test">
+          <in>Client.cpp</in>
+          <in>Client.hpp</in>
+          <in>index.cpp</in>
+        </df>
+      </df>
     </df>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

@@ -23,6 +23,9 @@ add_executable (
 	src/test/Client.cpp
 	src/fcgi/Connection.cpp
 	src/fcgi/Header.cpp
+	src/fcgi/body/BeginRequest.cpp
+	src/fcgi/body/EndRequest.cpp
+	src/fcgi/body/Unknown.cpp
 	)
 target_link_libraries (
 	libfcgipp
