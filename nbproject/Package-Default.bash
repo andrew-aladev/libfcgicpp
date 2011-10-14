@@ -13,11 +13,7 @@ NBTMPDIR=build/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
 OUTPUT_PATH=MissingOutputInProject
 OUTPUT_BASENAME=MissingOutputInProject
-<<<<<<< HEAD
 PACKAGE_TOP_DIR=libfcgicpp/
-=======
-PACKAGE_TOP_DIR=libfcgipp/
->>>>>>> 715a9e6... fix body content_length and padding_length
 
 # Functions
 function checkReturnCode
