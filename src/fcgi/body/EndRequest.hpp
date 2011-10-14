@@ -26,10 +26,11 @@ namespace fcgi {
 
 		class EndRequest : public RequestBody {
 		private:
+			uint16_t content_length;
 			uint32_t app_status;
 			spec::EndRequest body;
 		public:
-			EndRequest(stringstream & stream);
+			EndRequest(stringstream & stream, uint16_t content_length);
 		};
 	}
 }

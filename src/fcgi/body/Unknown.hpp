@@ -26,9 +26,10 @@ namespace fcgi {
 
 		class Unknown : public RequestBody {
 		private:
+			uint16_t content_length;
 			spec::Unknown body;
 		public:
-			Unknown(stringstream & stream);
+			Unknown(stringstream & stream, uint16_t content_length);
 		};
 	}
 }

@@ -21,11 +21,14 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #include "Util.hpp"
 #include "body/RequestBody.hpp"
 
+#define PADDING_BUFFER_LENGTH 128
+
 namespace fcgi {
 	using namespace std;
 
 	class Header {
 	private:
+		char padding_buffer[PADDING_BUFFER_LENGTH];
 		uint16_t request_id;
 		uint16_t content_length;
 		body::RequestBody *body;
@@ -36,6 +39,8 @@ namespace fcgi {
 	public:
 
 		Header() {
+			this->content_length = 0;
+			this->request_id = 0;
 			this->head_empty = true;
 			this->body_empty = true;
 		}
@@ -44,11 +49,15 @@ namespace fcgi {
 		inline bool isHeadEmpty() const {
 			return this->head_empty;
 		}
+		inline uint16_t getContentLength() const {
+			return this->content_length;
+		}
 		inline bool isBodyEmpty() const {
 			return this->body_empty;
 		}
 		void resolveHead(stringstream & stream);
 		void resolveBody(stringstream & stream);
+		void resolvePadding(stringstream & stream);
 	};
 
 	typedef boost::error_info<struct tag_bad_number, int> bad_number;
