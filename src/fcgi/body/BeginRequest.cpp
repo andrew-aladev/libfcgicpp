@@ -17,8 +17,9 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #include <iostream>
 using namespace std;
 
-fcgi::body::BeginRequest::BeginRequest(stringstream & stream) {
-	stream.read((char *) & this->body, FCGI_BODY_LENGTH);
+fcgi::body::BeginRequest::BeginRequest(stringstream & stream, uint16_t content_length) {
+	this->content_length = content_length;
+	stream.read((char *) & this->body, this->content_length);
 	this->role = (this->body.role_b1 << 8) + this->body.role_b0;
 
 	if (this->role < 0 || this->role > FCGI_MAXROLE) {

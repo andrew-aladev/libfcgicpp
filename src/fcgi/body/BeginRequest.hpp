@@ -27,10 +27,11 @@ namespace fcgi {
 
 		class BeginRequest : public RequestBody {
 		private:
+			uint16_t content_length;
 			uint16_t role;
 			spec::BeginRequest body;
 		public:
-			BeginRequest(stringstream & stream);
+			BeginRequest(stringstream & stream, uint16_t content_length);
 		};
 	}
 }

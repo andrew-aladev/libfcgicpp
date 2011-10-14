@@ -40,9 +40,6 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 //request_id variants
 #define FCGI_NULL_REQUEST_ID 0
 
-//----Body----
-#define FCGI_BODY_LENGTH 8
-
 //----Begin Request----
 //role variants
 #define FCGI_RESPONDER  1

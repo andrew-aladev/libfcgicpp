@@ -52,8 +52,10 @@ void fcgi::Connection::handle_read(const error_code& ec, size_t bytes_transferre
 		if (this->header.isHeadEmpty() && this->stream_size > FCGI_HEADER_LENGTH) {
 			this->header.resolveHead(this->str_stream);
 		}
-		if (this->header.isBodyEmpty() && this->stream_size > FCGI_HEADER_LENGTH + FCGI_BODY_LENGTH) {
+		if (!this->header.isHeadEmpty() && this->header.isBodyEmpty() &&
+				this->stream_size > FCGI_HEADER_LENGTH + this->header.getContentLength()) {
 			this->header.resolveBody(this->str_stream);
+			this->header.resolvePadding(this->str_stream);
 		}
 	} catch (const HeaderInvalidException &ex) {
 		error_code fault = error::make_error_code(error::fault);
@@ -77,6 +79,7 @@ void fcgi::Connection::handle_read(const error_code& ec, size_t bytes_transferre
 stream_protocol::socket & fcgi::Connection::getSocket() {
 	return this->socket;
 }
+
 void fcgi::Connection::close(error_code &ec) {
 	this->socket.close(ec);
 }

@@ -16,6 +16,7 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #include "Unknown.hpp"
 using namespace std;
 
-fcgi::body::Unknown::Unknown(stringstream & stream) {
-	stream.read((char *) & this->body, FCGI_BODY_LENGTH);
+fcgi::body::Unknown::Unknown(stringstream & stream, uint16_t content_length) {
+	this->content_length = content_length;
+	stream.read((char *) & this->body, this->content_length);
 }

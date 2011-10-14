@@ -62,14 +62,15 @@ void fcgi::Header::resolveHead(stringstream & stream) {
 }
 
 void fcgi::Header::resolveBody(stringstream & stream) {
+	stream.flush();
 	switch (this->head.type) {
 		case FCGI_BEGIN_REQUEST:
-			this->body = new body::BeginRequest(stream);
+			this->body = new body::BeginRequest(stream, this->content_length);
 			break;
 		case FCGI_ABORT_REQUEST:
 			break;
 		case FCGI_END_REQUEST:
-			this->body = new body::EndRequest(stream);
+			this->body = new body::EndRequest(stream, this->content_length);
 			break;
 		case FCGI_PARAMS:
 			break;
@@ -86,7 +87,7 @@ void fcgi::Header::resolveBody(stringstream & stream) {
 		case FCGI_GET_VALUES_RESULT:
 			break;
 		case FCGI_UNKNOWN_TYPE:
-			this->body = new body::Unknown(stream);
+			this->body = new body::Unknown(stream, this->content_length);
 			break;
 		default:
 			stringstream text;
@@ -97,4 +98,18 @@ void fcgi::Header::resolveBody(stringstream & stream) {
 			break;
 	}
 	this->body_empty = false;
+}
+
+void fcgi::Header::resolvePadding(stringstream & stream) {
+	uint8_t padding_length = this->head.padding_length;
+	uint8_t read_length;
+	while(padding_length > 0) {
+		if(PADDING_BUFFER_LENGTH < padding_length) {
+			read_length = PADDING_BUFFER_LENGTH;
+		} else {
+			read_length = padding_length;
+		}
+		stream.read((char *) & this->padding_buffer, read_length);
+		padding_length -= read_length;
+	}
 }

@@ -11,8 +11,8 @@ CND_CONF=Default
 CND_DISTDIR=dist
 NBTMPDIR=build/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=./libfcgipp
-OUTPUT_BASENAME=libfcgipp
+OUTPUT_PATH=MissingOutputInProject
+OUTPUT_BASENAME=MissingOutputInProject
 PACKAGE_TOP_DIR=libfcgipp/
 
 # Functions

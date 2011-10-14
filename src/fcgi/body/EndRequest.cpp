@@ -16,8 +16,9 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #include "EndRequest.hpp"
 using namespace std;
 
-fcgi::body::EndRequest::EndRequest(stringstream & stream) {
-	stream.read((char *) & this->body, FCGI_BODY_LENGTH);
+fcgi::body::EndRequest::EndRequest(stringstream & stream, uint16_t content_length) {
+	this->content_length = content_length;
+	stream.read((char *) & this->body, this->content_length);
 	this->app_status = (this->body.app_status_b4 << 24) + (this->body.app_status_b3 << 16)
 			+ (this->body.app_status_b2 << 8) + this->body.app_status_b1; // big endian
 }
