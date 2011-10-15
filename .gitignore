@@ -29,5 +29,5 @@ nbactions.xml
 nb-configuration.xml
 
 #----others----
-libfcgipp
+libfcgicpp
 Makefile-fcgi_client.mk

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="69">
   <logicalFolder name="root" displayName="root" projectFiles="true">
-    <df name="libfcgipp" root=".">
+    <df name="libfcgicpp" root=".">
       <df name="CMakeFiles" kind="SOURCE_LOGICAL_FOLDER">
         <df name="CMakeTmp" kind="SOURCE_LOGICAL_FOLDER">
           <df name="CMakeFiles" kind="SOURCE_LOGICAL_FOLDER">
@@ -15,18 +15,28 @@
         <df name="CompilerIdCXX" kind="SOURCE_LOGICAL_FOLDER">
           <in>CMakeCXXCompilerId.cpp</in>
         </df>
-        <df name="libfcgipp.dir" kind="SOURCE_LOGICAL_FOLDER">
-          <df name="src">
+        <df name="fcgi_client.dir" kind="SOURCE_LOGICAL_FOLDER">
+        </df>
+        <df name="libfcgicpp.dir" kind="SOURCE_LOGICAL_FOLDER">
+          <df name="src" kind="SOURCE_LOGICAL_FOLDER">
             <df name="fcgi" kind="SOURCE_LOGICAL_FOLDER">
-              <df name="body">
+              <df name="body" kind="SOURCE_LOGICAL_FOLDER">
+              </df>
+            </df>
+          </df>
+        </df>
+        <df name="libfcgicpp.dir" kind="SOURCE_LOGICAL_FOLDER">
+          <df name="src" kind="SOURCE_LOGICAL_FOLDER">
+            <df name="fcgi" kind="SOURCE_LOGICAL_FOLDER">
+              <df name="body" kind="SOURCE_LOGICAL_FOLDER">
               </df>
             </df>
           </df>
         </df>
       </df>
-      <df name="src">
-        <df name="fcgi">
-          <df name="body">
+      <df name="src" kind="SOURCE_LOGICAL_FOLDER">
+        <df name="fcgi" kind="SOURCE_LOGICAL_FOLDER">
+          <df name="body" kind="SOURCE_LOGICAL_FOLDER">
             <in>BeginRequest.cpp</in>
             <in>BeginRequest.hpp</in>
             <in>EndRequest.cpp</in>
@@ -42,26 +52,26 @@
           <in>Spec.hpp</in>
           <in>Util.hpp</in>
         </df>
-        <df name="test">
-          <in>Client.cpp</in>
-          <in>Client.hpp</in>
-          <in>index.cpp</in>
-        </df>
       </df>
     </df>
+    <logicalFolder name="test" displayName="test" projectFiles="true">
+      <itemPath>src/test/Client.cpp</itemPath>
+      <itemPath>src/test/Client.hpp</itemPath>
+      <itemPath>src/test/index.cpp</itemPath>
+    </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>CMakeLists.txt</itemPath>
       <itemPath>Makefile</itemPath>
-      <itemPath>Makefile-libfcgipp.mk</itemPath>
+      <itemPath>Makefile-libfcgicpp.mk</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
   </sourceRootList>
-  <projectmakefile>Makefile-libfcgipp.mk</projectmakefile>
+  <projectmakefile>Makefile-libfcgicpp.mk</projectmakefile>
   <confs>
     <conf name="Default" type="0">
       <toolsSet>
@@ -74,10 +84,31 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>$(MAKE) -f Makefile</buildCommand>
           <cleanCommand>$(MAKE) -f Makefile clean</cleanCommand>
-          <executablePath>./libfcgipp</executablePath>
+          <executablePath></executablePath>
           <ccTool>
             <incDir>
+              <pElem>/usr/include/boost/mpl/aux_</pElem>
+              <pElem>/usr/include/boost/detail</pElem>
+              <pElem>/usr/include/boost/algorithm/string</pElem>
+              <pElem>/usr/include/boost/tuple/detail</pElem>
+              <pElem>/usr/include/boost/exception</pElem>
+              <pElem>/usr/include/boost/utility</pElem>
+              <pElem>src/fcgi/body</pElem>
+              <pElem>/usr/include/boost</pElem>
+              <pElem>src/fcgi</pElem>
               <pElem>.</pElem>
+              <pElem>/usr/include/boost/config</pElem>
+              <pElem>/usr/include/boost/exception/detail</pElem>
+              <pElem>/usr/include/boost/algorithm/string/detail</pElem>
+              <pElem>/usr/include/boost/mpl/aux_/preprocessed/gcc</pElem>
+              <pElem>/usr/include/boost/type_traits/detail</pElem>
+              <pElem>/usr/include/boost/mpl</pElem>
+              <pElem>/usr/include/boost/smart_ptr</pElem>
+              <pElem>/usr/include/boost/concept/detail</pElem>
+              <pElem>/usr/include/boost/range/detail</pElem>
+              <pElem>/usr/include/boost/smart_ptr/detail</pElem>
+              <pElem>/usr/include/boost/range</pElem>
+              <pElem>/usr/include/boost/iterator/detail</pElem>
             </incDir>
           </ccTool>
         </makeTool>
@@ -85,6 +116,84 @@
       <item path="CMakeFiles/CompilerIdC/CMakeCCompilerId.c" ex="true" tool="0">
       </item>
       <item path="CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp" ex="true" tool="1">
+      </item>
+      <folder path="test">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/boost/asio/impl</pElem>
+            <pElem>/usr/include/boost/date_time</pElem>
+            <pElem>/usr/include/boost/asio/local</pElem>
+            <pElem>src/test</pElem>
+            <pElem>/usr/include/boost/asio/local/detail</pElem>
+            <pElem>/usr/include/boost/bind</pElem>
+            <pElem>/usr/include/boost/asio/detail/impl</pElem>
+            <pElem>/usr/include/boost/asio</pElem>
+            <pElem>/usr/include/boost/asio/posix</pElem>
+            <pElem>/usr/include/boost/system</pElem>
+            <pElem>/usr/include/boost/date_time/gregorian</pElem>
+            <pElem>/usr/include/boost/regex/v4</pElem>
+            <pElem>/usr/include/boost/asio/ip/detail</pElem>
+            <pElem>/usr/include/boost/date_time/posix_time</pElem>
+            <pElem>/usr/include/boost/asio/ip</pElem>
+            <pElem>/usr/include/boost/asio/detail</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <item path="src/fcgi/Connection.cpp" ex="false" tool="1">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/boost/asio/impl</pElem>
+            <pElem>/usr/include/boost/asio/local</pElem>
+            <pElem>/usr/include/boost/date_time</pElem>
+            <pElem>/usr/include/boost/asio/local/detail/impl</pElem>
+            <pElem>/usr/include/boost/asio/local/detail</pElem>
+            <pElem>/usr/include/boost/bind</pElem>
+            <pElem>/usr/include/boost/asio/detail/impl</pElem>
+            <pElem>/usr/include/boost/asio</pElem>
+            <pElem>/usr/include/boost/asio/posix</pElem>
+            <pElem>/usr/include/boost/system</pElem>
+            <pElem>/usr/include/boost/date_time/gregorian</pElem>
+            <pElem>/usr/include/boost/regex/v4</pElem>
+            <pElem>/usr/include/boost/asio/ip/detail</pElem>
+            <pElem>/usr/include/boost/date_time/posix_time</pElem>
+            <pElem>/usr/include/boost/asio/ip</pElem>
+            <pElem>/usr/include/boost/asio/detail</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/fcgi/Header.cpp" ex="false" tool="1">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/boost/units/detail</pElem>
+            <pElem>/usr/include/boost/iterator</pElem>
+            <pElem>/usr/include/boost/type_traits</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/fcgi/body/BeginRequest.cpp" ex="false" tool="1">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/boost/units/detail</pElem>
+            <pElem>/usr/include/boost/iterator</pElem>
+            <pElem>/usr/include/boost/type_traits</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/test/Client.cpp" ex="false" tool="1">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/boost/asio/local/detail/impl</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/test/index.cpp" ex="false" tool="1">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/boost/units/detail</pElem>
+            <pElem>/usr/include/boost/iterator</pElem>
+            <pElem>/usr/include/boost/type_traits</pElem>
+          </incDir>
+        </ccTool>
       </item>
     </conf>
   </confs>
