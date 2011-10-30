@@ -28,6 +28,11 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
+#----CPack.gitignore----
+_CPack_Packages/*
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
 #----others----
-libfcgicpp
+libfcgicpp*
 Makefile-fcgi_client.mk
