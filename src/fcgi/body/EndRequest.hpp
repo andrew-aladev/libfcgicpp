@@ -17,7 +17,6 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #define	ENDREQUEST_HPP
 #include "RequestBody.hpp"
 #include "../Spec.hpp"
-#include <sstream>
 
 namespace fcgi {
 
@@ -26,11 +25,10 @@ namespace fcgi {
 
 		class EndRequest : public RequestBody {
 		private:
-			uint16_t content_length;
 			uint32_t app_status;
 			spec::EndRequest body;
 		public:
-			EndRequest(stringstream & stream, uint16_t content_length);
+			EndRequest(char *str, uint16_t content_length);
 		};
 	}
 }

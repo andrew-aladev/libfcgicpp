@@ -25,6 +25,9 @@ using namespace boost;
 using namespace std;
 
 fcgi::Connection::~Connection() {
+	if (this->str != NULL) {
+		delete[] this->str;
+	}
 	this->socket.close();
 }
 
@@ -32,31 +35,33 @@ fcgi::Connection::pointer fcgi::Connection::create(io_service &io_service) {
 	return fcgi::Connection::pointer(new fcgi::Connection(io_service));
 }
 
-void fcgi::Connection::bind() {
+void fcgi::Connection::bind_read_head() {
+	if (this->str != NULL) {
+		delete[] this->str;
+		this->str = NULL;
+	}
+	this->str = new char[FCGI_HEADER_LENGTH];
 	async_read(
 			this->socket,
-			boost::asio::buffer(this->str, BUFFER_SIZE),
+			boost::asio::buffer(this->str, FCGI_HEADER_LENGTH),
 			boost::bind(
-			&Connection::handle_read,
+			&Connection::handle_read_head,
 			shared_from_this(),
 			placeholders::error,
 			placeholders::bytes_transferred
 			));
 }
 
-void fcgi::Connection::handle_read(const error_code& ec, size_t bytes_transferred) {
-	this->str_stream.write(this->str, bytes_transferred);
-	this->stream_size += bytes_transferred;
+void fcgi::Connection::handle_read_head(const error_code& ec, size_t bytes_transferred) {
+	if (bytes_transferred != FCGI_HEADER_LENGTH || ec == error::eof) {
+		//connection closed
+		return;
+	} else if (ec) {
+		throw system_error(ec);
+	}
 
 	try {
-		if (this->header.isHeadEmpty() && this->stream_size > FCGI_HEADER_LENGTH) {
-			this->header.resolveHead(this->str_stream);
-		}
-		if (!this->header.isHeadEmpty() && this->header.isBodyEmpty() &&
-				this->stream_size > FCGI_HEADER_LENGTH + this->header.getContentLength()) {
-			this->header.resolveBody(this->str_stream);
-			this->header.resolvePadding(this->str_stream);
-		}
+		this->header.resolveHead(this->str);
 	} catch (const HeaderInvalidException &ex) {
 		error_code fault = error::make_error_code(error::fault);
 		this->close(fault);
@@ -67,13 +72,50 @@ void fcgi::Connection::handle_read(const error_code& ec, size_t bytes_transferre
 		return;
 	}
 
-	if (ec == error::eof) {
+	this->bind_read_body();
+}
+
+void fcgi::Connection::bind_read_body() {
+	if (this->str != NULL) {
+		delete[] this->str;
+		this->str = NULL;
+	}
+	uint16_t body_length = this->header.getBodyLength();
+	this->str = new char[body_length];
+	async_read(
+			this->socket,
+			boost::asio::buffer(this->str, body_length),
+			boost::bind(
+			&Connection::handle_read_body,
+			shared_from_this(),
+			placeholders::error,
+			placeholders::bytes_transferred,
+			body_length
+			));
+}
+
+void fcgi::Connection::handle_read_body(const error_code& ec, size_t bytes_transferred, uint16_t body_length) {
+	if (bytes_transferred != body_length || ec == error::eof) {
 		//connection closed
 		return;
 	} else if (ec) {
 		throw system_error(ec);
 	}
-	this->bind();
+
+	try {
+		this->header.resolveBody(this->str);
+		this->header.resolvePadding(this->str);
+	} catch (const HeaderInvalidException &ex) {
+		error_code fault = error::make_error_code(error::fault);
+		this->close(fault);
+		return;
+	} catch (const body::RequestBodyInvalidException &ex) {
+		error_code fault = error::make_error_code(error::fault);
+		this->close(fault);
+		return;
+	}
+
+	this->bind_read_head();
 }
 
 stream_protocol::socket & fcgi::Connection::getSocket() {

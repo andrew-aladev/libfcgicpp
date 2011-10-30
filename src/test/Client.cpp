@@ -47,7 +47,7 @@ fcgi::Client::~Client() {
 
 void fcgi::Client::handle_accept(fcgi::Connection::pointer new_connection, const error_code& ec) {
 	if (!ec) {
-		new_connection.get()->bind();
+		new_connection.get()->bind_read_head();
 		this->start_accept();
 	} else {
 		throw system_error(ec);
