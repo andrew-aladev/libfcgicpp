@@ -9,18 +9,12 @@ TOP=`pwd`
 CND_PLATFORM=GNU-Linux-x86
 CND_CONF=Default
 CND_DISTDIR=dist
-NBTMPDIR=build/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
+CND_BUILDDIR=build
+NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=MissingOutputInProject
-OUTPUT_BASENAME=MissingOutputInProject
-<<<<<<< HEAD
-<<<<<<< HEAD
+OUTPUT_PATH=./libfcgicpp
+OUTPUT_BASENAME=libfcgicpp
 PACKAGE_TOP_DIR=libfcgicpp/
-=======
-=======
->>>>>>> 715a9e66508bcc981521639b36962ce678ccbecf
-PACKAGE_TOP_DIR=libfcgipp/
->>>>>>> 715a9e6... fix body content_length and padding_length
 
 # Functions
 function checkReturnCode

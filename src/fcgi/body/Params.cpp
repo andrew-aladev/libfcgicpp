@@ -13,24 +13,13 @@ along with libfcgicpp.  If not, see <http://www.gnu.org/licenses/>.
 
 Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
  */
-#ifndef BEGINREQUEST_HPP
-#define	BEGINREQUEST_HPP
-#include "RequestBody.hpp"
-#include "../Spec.hpp"
+#include "Params.hpp"
+#include <iostream>
+using namespace std;
 
-namespace fcgi {
+fcgi::body::Params::Params(char *str, uint16_t content_length) : fcgi::body::RequestBody(content_length) {
+	this->body.assign(str, this->content_length);
 
-	namespace body {
-		using namespace std;
-
-		class BeginRequest : public RequestBody {
-		private:
-			uint16_t role;
-			spec::BeginRequest body;
-		public:
-			BeginRequest(char *str, uint16_t content_length);
-		};
-	}
+	cout << "<----Params---->" << endl;
+	cout << this->body << endl;
 }
-
-#endif	/* BEGINREQUEST_HPP */

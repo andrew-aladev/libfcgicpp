@@ -1,56 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="69">
-  <logicalFolder name="root" displayName="root" projectFiles="true">
+<configurationDescriptor version="79">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df name="libfcgicpp" root=".">
-      <df name="CMakeFiles" kind="SOURCE_LOGICAL_FOLDER">
-        <df name="CMakeTmp" kind="SOURCE_LOGICAL_FOLDER">
-          <df name="CMakeFiles" kind="SOURCE_LOGICAL_FOLDER">
-            <df name="cmTryCompileExec.dir" kind="SOURCE_LOGICAL_FOLDER">
-            </df>
-          </df>
-        </df>
-        <df name="CompilerIdC" kind="SOURCE_LOGICAL_FOLDER">
-          <in>CMakeCCompilerId.c</in>
-        </df>
-        <df name="CompilerIdCXX" kind="SOURCE_LOGICAL_FOLDER">
-          <in>CMakeCXXCompilerId.cpp</in>
-        </df>
-<<<<<<< HEAD
-        <df name="fcgi_client.dir" kind="SOURCE_LOGICAL_FOLDER">
-        </df>
-        <df name="libfcgicpp.dir" kind="SOURCE_LOGICAL_FOLDER">
-          <df name="src" kind="SOURCE_LOGICAL_FOLDER">
-            <df name="fcgi" kind="SOURCE_LOGICAL_FOLDER">
-              <df name="body" kind="SOURCE_LOGICAL_FOLDER">
-              </df>
-            </df>
-          </df>
-        </df>
-        <df name="libfcgicpp.dir" kind="SOURCE_LOGICAL_FOLDER">
-          <df name="src" kind="SOURCE_LOGICAL_FOLDER">
-            <df name="fcgi" kind="SOURCE_LOGICAL_FOLDER">
-              <df name="body" kind="SOURCE_LOGICAL_FOLDER">
-=======
-        <df name="libfcgipp.dir" kind="SOURCE_LOGICAL_FOLDER">
-          <df name="src" kind="SOURCE_LOGICAL_FOLDER">
-            <df name="fcgi" kind="SOURCE_LOGICAL_FOLDER">
-              <df name="body" kind="SOURCE_LOGICAL_FOLDER">
-<<<<<<< HEAD
->>>>>>> 715a9e6... fix body content_length and padding_length
-=======
->>>>>>> 715a9e66508bcc981521639b36962ce678ccbecf
+      <df name="_CPack_Packages">
+        <df name="Linux">
+          <df name="DEB">
+            <df name="libfcgicpp_0.1.1-0_amd64">
+              <df name="usr">
+                <df name="bin">
+                </df>
               </df>
             </df>
           </df>
         </df>
       </df>
-      <df name="src" kind="SOURCE_LOGICAL_FOLDER">
-        <df name="fcgi" kind="SOURCE_LOGICAL_FOLDER">
-          <df name="body" kind="SOURCE_LOGICAL_FOLDER">
+      <df name="CMakeFiles">
+        <df name="CMakeTmp">
+          <df name="CMakeFiles">
+            <df name="cmTryCompileExec.dir">
+            </df>
+          </df>
+        </df>
+        <df name="CompilerIdC">
+          <in>CMakeCCompilerId.c</in>
+        </df>
+        <df name="CompilerIdCXX">
+          <in>CMakeCXXCompilerId.cpp</in>
+        </df>
+        <df name="libfcgicpp.dir">
+          <df name="src">
+            <df name="fcgi">
+              <df name="body">
+              </df>
+            </df>
+          </df>
+        </df>
+      </df>
+      <df name="src">
+        <df name="fcgi">
+          <df name="body">
             <in>BeginRequest.cpp</in>
             <in>BeginRequest.hpp</in>
             <in>EndRequest.cpp</in>
             <in>EndRequest.hpp</in>
+            <in>Params.cpp</in>
+            <in>Params.hpp</in>
             <in>RequestBody.hpp</in>
             <in>Unknown.cpp</in>
             <in>Unknown.hpp</in>
@@ -64,7 +58,10 @@
         </df>
       </df>
     </df>
-    <logicalFolder name="test" displayName="test" projectFiles="true">
+    <logicalFolder name="test"
+                   displayName="test"
+                   projectFiles="true"
+                   root="src/test">
       <itemPath>src/test/Client.cpp</itemPath>
       <itemPath>src/test/Client.hpp</itemPath>
       <itemPath>src/test/index.cpp</itemPath>
@@ -85,125 +82,31 @@
   <confs>
     <conf name="Default" type="0">
       <toolsSet>
-        <developmentServer>localhost</developmentServer>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>GNU|GNU</compilerSet>
-        <platform>2</platform>
       </toolsSet>
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>$(MAKE) -f Makefile</buildCommand>
-          <cleanCommand>$(MAKE) -f Makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>./libfcgicpp</executablePath>
           <ccTool>
             <incDir>
-              <pElem>/usr/include/boost/mpl/aux_</pElem>
-              <pElem>/usr/include/boost/detail</pElem>
-              <pElem>/usr/include/boost/algorithm/string</pElem>
-              <pElem>/usr/include/boost/tuple/detail</pElem>
-              <pElem>/usr/include/boost/exception</pElem>
-              <pElem>/usr/include/boost/utility</pElem>
-              <pElem>src/fcgi/body</pElem>
-              <pElem>/usr/include/boost</pElem>
-              <pElem>src/fcgi</pElem>
               <pElem>.</pElem>
-              <pElem>/usr/include/boost/config</pElem>
-              <pElem>/usr/include/boost/exception/detail</pElem>
-              <pElem>/usr/include/boost/algorithm/string/detail</pElem>
-              <pElem>/usr/include/boost/mpl/aux_/preprocessed/gcc</pElem>
-              <pElem>/usr/include/boost/type_traits/detail</pElem>
-              <pElem>/usr/include/boost/mpl</pElem>
-              <pElem>/usr/include/boost/smart_ptr</pElem>
-              <pElem>/usr/include/boost/concept/detail</pElem>
-              <pElem>/usr/include/boost/range/detail</pElem>
-              <pElem>/usr/include/boost/smart_ptr/detail</pElem>
-              <pElem>/usr/include/boost/range</pElem>
-              <pElem>/usr/include/boost/iterator/detail</pElem>
             </incDir>
           </ccTool>
         </makeTool>
       </makefileType>
-      <item path="CMakeFiles/CompilerIdC/CMakeCCompilerId.c" ex="true" tool="0">
+      <item path="CMakeFiles/CompilerIdC/CMakeCCompilerId.c"
+            ex="true"
+            tool="0"
+            flavor="0">
       </item>
-      <item path="CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp" ex="true" tool="1">
-      </item>
-      <folder path="test">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/boost/asio/impl</pElem>
-            <pElem>/usr/include/boost/date_time</pElem>
-            <pElem>/usr/include/boost/asio/local</pElem>
-            <pElem>src/test</pElem>
-            <pElem>/usr/include/boost/asio/local/detail</pElem>
-            <pElem>/usr/include/boost/bind</pElem>
-            <pElem>/usr/include/boost/asio/detail/impl</pElem>
-            <pElem>/usr/include/boost/asio</pElem>
-            <pElem>/usr/include/boost/asio/posix</pElem>
-            <pElem>/usr/include/boost/system</pElem>
-            <pElem>/usr/include/boost/date_time/gregorian</pElem>
-            <pElem>/usr/include/boost/regex/v4</pElem>
-            <pElem>/usr/include/boost/asio/ip/detail</pElem>
-            <pElem>/usr/include/boost/date_time/posix_time</pElem>
-            <pElem>/usr/include/boost/asio/ip</pElem>
-            <pElem>/usr/include/boost/asio/detail</pElem>
-          </incDir>
-        </ccTool>
-      </folder>
-      <item path="src/fcgi/Connection.cpp" ex="false" tool="1">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/boost/asio/impl</pElem>
-            <pElem>/usr/include/boost/asio/local</pElem>
-            <pElem>/usr/include/boost/date_time</pElem>
-            <pElem>/usr/include/boost/asio/local/detail/impl</pElem>
-            <pElem>/usr/include/boost/asio/local/detail</pElem>
-            <pElem>/usr/include/boost/bind</pElem>
-            <pElem>/usr/include/boost/asio/detail/impl</pElem>
-            <pElem>/usr/include/boost/asio</pElem>
-            <pElem>/usr/include/boost/asio/posix</pElem>
-            <pElem>/usr/include/boost/system</pElem>
-            <pElem>/usr/include/boost/date_time/gregorian</pElem>
-            <pElem>/usr/include/boost/regex/v4</pElem>
-            <pElem>/usr/include/boost/asio/ip/detail</pElem>
-            <pElem>/usr/include/boost/date_time/posix_time</pElem>
-            <pElem>/usr/include/boost/asio/ip</pElem>
-            <pElem>/usr/include/boost/asio/detail</pElem>
-          </incDir>
-        </ccTool>
-      </item>
-      <item path="src/fcgi/Header.cpp" ex="false" tool="1">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/boost/units/detail</pElem>
-            <pElem>/usr/include/boost/iterator</pElem>
-            <pElem>/usr/include/boost/type_traits</pElem>
-          </incDir>
-        </ccTool>
-      </item>
-      <item path="src/fcgi/body/BeginRequest.cpp" ex="false" tool="1">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/boost/units/detail</pElem>
-            <pElem>/usr/include/boost/iterator</pElem>
-            <pElem>/usr/include/boost/type_traits</pElem>
-          </incDir>
-        </ccTool>
-      </item>
-      <item path="src/test/Client.cpp" ex="false" tool="1">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/boost/asio/local/detail/impl</pElem>
-          </incDir>
-        </ccTool>
-      </item>
-      <item path="src/test/index.cpp" ex="false" tool="1">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/boost/units/detail</pElem>
-            <pElem>/usr/include/boost/iterator</pElem>
-            <pElem>/usr/include/boost/type_traits</pElem>
-          </incDir>
-        </ccTool>
+      <item path="CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+            ex="true"
+            tool="1"
+            flavor="0">
       </item>
     </conf>
   </confs>

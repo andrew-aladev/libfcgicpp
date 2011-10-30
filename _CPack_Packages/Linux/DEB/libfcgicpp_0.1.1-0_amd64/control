@@ -1,0 +1,10 @@
+Package: libfcgicpp
+Version: 0.1.1-0
+Section: web
+Priority: standart
+Architecture: amd64
+Depends: libboost-system1.46.1 (>= 1.46.1-7)
+Installed-Size: 184
+Maintainer: Andrew Aladev <aladjev.andrew@gmail.com>
+Description: Fastcgi realization in c++
+

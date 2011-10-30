@@ -14,9 +14,7 @@ along with libfcgicpp.  If not, see <http://www.gnu.org/licenses/>.
 Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
  */
 #include "Unknown.hpp"
-using namespace std;
 
-fcgi::body::Unknown::Unknown(stringstream & stream, uint16_t content_length) {
-	this->content_length = content_length;
-	stream.read((char *) & this->body, this->content_length);
+fcgi::body::Unknown::Unknown(char *str, uint16_t content_length) : fcgi::body::RequestBody(content_length) {
+	memcpy((void *) & this->body, (void *) str, this->content_length);
 }
