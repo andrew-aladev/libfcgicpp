@@ -14,24 +14,34 @@ along with libfcgicpp.  If not, see <http://www.gnu.org/licenses/>.
 Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
  */
 #include "Header.hpp"
-#include "Spec.hpp"
 #include <iostream>
-#include <boost/lexical_cast.hpp>
 #include "body/BeginRequest.hpp"
 #include "body/EndRequest.hpp"
 #include "body/Unknown.hpp"
+#include "body/Params.hpp"
 using namespace std;
 using namespace boost;
+using namespace fcgi;
 
 fcgi::Header::~Header() {
-	if(this->body) {
+	if (this->body != NULL) {
 		delete this->body;
 	}
 }
 
-void fcgi::Header::resolveHead(stringstream & stream) {
-	stream.flush();
-	stream.read((char *) & this->head, FCGI_HEADER_LENGTH);
+void fcgi::Header::reset() {
+	if (this->body != NULL) {
+		delete this->body;
+		this->body = NULL;
+	}
+	this->content_length = 0;
+	this->request_id = 0;
+	this->head_empty = true;
+	this->body_empty = true;
+}
+
+void fcgi::Header::resolveHead(char *str) {
+	memcpy((void *) & this->head, (void *) str, FCGI_HEADER_LENGTH);
 	this->request_id = (this->head.request_id_b1 << 8) + this->head.request_id_b0; //big endian
 	this->content_length = (this->head.content_length_b1 << 8) + this->head.content_length_b0; //big endian
 	this->head_empty = false;
@@ -61,55 +71,48 @@ void fcgi::Header::resolveHead(stringstream & stream) {
 	cout << "version: " << (int) this->head.version << endl;
 }
 
-void fcgi::Header::resolveBody(stringstream & stream) {
-	stream.flush();
+void fcgi::Header::resolveBody(char *str) {
 	switch (this->head.type) {
 		case FCGI_BEGIN_REQUEST:
-			this->body = new body::BeginRequest(stream, this->content_length);
-			break;
-		case FCGI_ABORT_REQUEST:
+			this->body = new body::BeginRequest(str, this->content_length);
 			break;
 		case FCGI_END_REQUEST:
-			this->body = new body::EndRequest(stream, this->content_length);
-			break;
-		case FCGI_PARAMS:
-			break;
-		case FCGI_STDIN:
-			break;
-		case FCGI_STDOUT:
-			break;
-		case FCGI_STDERR:
-			break;
-		case FCGI_DATA:
-			break;
-		case FCGI_GET_VALUES:
-			break;
-		case FCGI_GET_VALUES_RESULT:
+			this->body = new body::EndRequest(str, this->content_length);
 			break;
 		case FCGI_UNKNOWN_TYPE:
-			this->body = new body::Unknown(stream, this->content_length);
+			this->body = new body::Unknown(str, this->content_length);
 			break;
+		case FCGI_PARAMS:
+			this->body = new body::Params(str, this->content_length);
+			break;
+		case FCGI_ABORT_REQUEST:
+		case FCGI_STDIN:
+		case FCGI_STDOUT:
+		case FCGI_STDERR:
+		case FCGI_DATA:
+		case FCGI_GET_VALUES:
+		case FCGI_GET_VALUES_RESULT:
 		default:
 			stringstream text;
-			text << "Could not resolve body";
+			text << "Could not resolve body with type " << (int) this->head.type;
 			BOOST_THROW_EXCEPTION(
-					HeaderInvalidException(text.str())
+					HeaderInvalidException(text.str()) << bad_number((int) this->head.type)
 					);
 			break;
 	}
 	this->body_empty = false;
 }
 
-void fcgi::Header::resolvePadding(stringstream & stream) {
+void fcgi::Header::resolvePadding(char *str) {
 	uint8_t padding_length = this->head.padding_length;
 	uint8_t read_length;
-	while(padding_length > 0) {
-		if(PADDING_BUFFER_LENGTH < padding_length) {
+	while (padding_length > 0) {
+		if (PADDING_BUFFER_LENGTH < padding_length) {
 			read_length = PADDING_BUFFER_LENGTH;
 		} else {
 			read_length = padding_length;
 		}
-		stream.read((char *) & this->padding_buffer, read_length);
+		memcpy((void *) & this->padding_buffer, (void *) str, read_length);
 		padding_length -= read_length;
 	}
 }

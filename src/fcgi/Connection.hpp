@@ -25,8 +25,6 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #include <boost/asio.hpp>
 #include "Header.hpp"
 
-#define BUFFER_SIZE 128
-
 namespace fcgi {
     using namespace boost::asio::local;
     using namespace boost::system;
@@ -37,7 +35,7 @@ namespace fcgi {
     class Connection : public enable_shared_from_this<Connection> {
     private:
         stream_protocol::socket socket;
-        char str[BUFFER_SIZE];
+        char *str;
         stringstream str_stream;
         size_t stream_size;
 
@@ -48,13 +46,15 @@ namespace fcgi {
             this->stream_size = 0;
         }
 
-        void handle_read(const error_code& ec, size_t bytes_transferred);
+        void handle_read_head(const error_code& ec, size_t bytes_transferred);
+		void handle_read_body(const error_code& ec, size_t bytes_transferred, uint16_t body_length);
 		void close(error_code &ec);
 
     public:
         typedef shared_ptr<Connection> pointer;
 
-        void bind();
+        void bind_read_head();
+		void bind_read_body();
         stream_protocol::socket & getSocket();
         virtual ~Connection();
 

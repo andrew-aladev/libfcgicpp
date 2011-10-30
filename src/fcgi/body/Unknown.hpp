@@ -17,7 +17,6 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #define	UNKNOWN_HPP
 #include "RequestBody.hpp"
 #include "../Spec.hpp"
-#include <sstream>
 
 namespace fcgi {
 
@@ -26,10 +25,9 @@ namespace fcgi {
 
 		class Unknown : public RequestBody {
 		private:
-			uint16_t content_length;
 			spec::Unknown body;
 		public:
-			Unknown(stringstream & stream, uint16_t content_length);
+			Unknown(char *str, uint16_t content_length);
 		};
 	}
 }
