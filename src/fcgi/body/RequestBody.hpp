@@ -17,11 +17,23 @@ Copyright (C) 2011 Andrew Aladjev <aladjev.andrew@gmail.com>
 #define	REQUESTBODY_HPP
 
 #include "../Util.hpp"
+#include <stdint.h>
 
 namespace fcgi {
 	namespace body {
 
 		class RequestBody {
+		protected:
+			uint16_t content_length;
+
+		public:
+
+			RequestBody(uint16_t _content_length) : content_length(_content_length) {
+			}
+
+			inline size_t getContentLength() {
+				return this->content_length;
+			}
 		};
 
 		typedef boost::error_info<struct tag_bad_number, int> bad_number;
