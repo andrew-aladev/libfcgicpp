@@ -12,5 +12,9 @@ Nginx conf to test:
                 fastcgi_param PATH_INFO $fastcgi_path_info;
         }
 Please check that nginx has enough rights to access fcgi_test.sock which is created by libfcgicpp binary
-For debug in netbeans check that "Project Properties -> Run -> Console Type" equals "Output Window" and gdb is installed
+
+For debug in netbeans check:
+1. "Project Properties -> Run -> Console Type" equals "Output Window" and gdb is installed
+2. "Project Properties -> Code Assistance -> C++ Compiler -> Include Directories" add "include" folder
+
 FastCGI Specification http://www.fastcgi.com/devkit/doc/fcgi-spec.html

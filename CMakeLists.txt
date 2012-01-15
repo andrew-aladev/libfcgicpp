@@ -1,6 +1,10 @@
 cmake_minimum_required (VERSION 2.8.2)
 project (libfcgicpp)
 
+if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
+   message(SEND_ERROR "In-source builds are not allowed! mkdir build, cd build, cmake ..")
+endif()
+
 set (CMAKE_BUILD_TYPE Debug)
 
 set (CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
@@ -10,35 +14,38 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
 endif()
 set (Boost_USE_MULTITHREADED on)
 
+find_package (Threads)
 find_package (Boost COMPONENTS system REQUIRED)
 
 include_directories (
-	${libfcgicpp_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/include
 	${Boost_INCLUDE_DIRS}
 )
 
 add_executable (
-    libfcgicpp
-	src/test/index.cpp
-	src/test/Client.cpp
-	src/fcgi/Connection.cpp
-	src/fcgi/Header.cpp
-	src/fcgi/body/BeginRequest.cpp
-	src/fcgi/body/EndRequest.cpp
-	src/fcgi/body/Unknown.cpp
-	src/fcgi/body/Params.cpp
+    ${PROJECT_NAME}
+	${PROJECT_SOURCE_DIR}/test/index.cpp
+	${PROJECT_SOURCE_DIR}/test/Client.cpp
+	${PROJECT_SOURCE_DIR}/src/Connection.cpp
+	${PROJECT_SOURCE_DIR}/src/Header.cpp
+	${PROJECT_SOURCE_DIR}/src/body/BeginRequest.cpp
+	${PROJECT_SOURCE_DIR}/src/body/EndRequest.cpp
+	${PROJECT_SOURCE_DIR}/src/body/Unknown.cpp
+	${PROJECT_SOURCE_DIR}/src/body/Params.cpp
 	)
 target_link_libraries (
-	libfcgicpp
+	${PROJECT_NAME}
 	${Boost_LIBRARIES}
+	${CMAKE_THREAD_LIBS_INIT}
 )
-install (TARGETS libfcgicpp DESTINATION bin)
+install (TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
+exec_program (dpkg ARGS --print-architecture OUTPUT_VARIABLE DPKG_ARCH)
 set (CPACK_GENERATOR "DEB")
-set (CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
-set (CPACK_PACKAGE_NAME "libfcgicpp")
+set (CPACK_DEBIAN_PACKAGE_ARCHITECTURE ${DPKG_ARCH})
+set (CPACK_PACKAGE_NAME "${PROJECT_NAME}")
 
-set (CPACK_PACKAGE_VERSION "0.1.1-0")
+set (CPACK_PACKAGE_VERSION "0.1.2-0")
 
 set (CPACK_DEBIAN_PACKAGE_DEPENDS "libboost-system1.46.1 (>= 1.46.1-7)")
 
@@ -47,8 +54,7 @@ set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "Fastcgi realization in c++")
 set (CPACK_DEBIAN_PACKAGE_SECTION "web")
 set (CPACK_DEBIAN_PACKAGE_PRIORITY "standart")
 
-set (CPACK_PACKAGE_FILE_NAME 
+set (CPACK_PACKAGE_FILE_NAME
 	"${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}"
 )
-
 include (CPack)

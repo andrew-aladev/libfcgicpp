@@ -36,3 +36,4 @@ CPackSourceConfig.cmake
 #----others----
 libfcgicpp*
 Makefile-fcgi_client.mk
+build
