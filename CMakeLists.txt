@@ -27,7 +27,9 @@ add_executable (
 	${PROJECT_SOURCE_DIR}/test/index.cpp
 	${PROJECT_SOURCE_DIR}/test/Client.cpp
 	${PROJECT_SOURCE_DIR}/src/Connection.cpp
-	${PROJECT_SOURCE_DIR}/src/Header.cpp
+	${PROJECT_SOURCE_DIR}/src/Manager.cpp
+	${PROJECT_SOURCE_DIR}/src/Head.cpp
+	${PROJECT_SOURCE_DIR}/src/body/Padding.cpp
 	${PROJECT_SOURCE_DIR}/src/body/BeginRequest.cpp
 	${PROJECT_SOURCE_DIR}/src/body/EndRequest.cpp
 	${PROJECT_SOURCE_DIR}/src/body/Unknown.cpp

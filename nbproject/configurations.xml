@@ -49,9 +49,10 @@
       <df name="include">
         <df name="body">
           <in>BeginRequest.hpp</in>
+          <in>Body.hpp</in>
           <in>EndRequest.hpp</in>
+          <in>Padding.hpp</in>
           <in>Params.hpp</in>
-          <in>RequestBody.hpp</in>
           <in>Stdin.hpp</in>
           <in>Unknown.hpp</in>
         </df>
@@ -62,7 +63,8 @@
           <in>Role.hpp</in>
         </df>
         <in>Connection.hpp</in>
-        <in>Header.hpp</in>
+        <in>Head.hpp</in>
+        <in>Manager.hpp</in>
         <in>Request.hpp</in>
         <in>Spec.hpp</in>
         <in>Util.hpp</in>
@@ -71,6 +73,7 @@
         <df name="body">
           <in>BeginRequest.cpp</in>
           <in>EndRequest.cpp</in>
+          <in>Padding.cpp</in>
           <in>Params.cpp</in>
           <in>Stdin.cpp</in>
           <in>Unknown.cpp</in>
@@ -78,7 +81,8 @@
         <df name="role">
         </df>
         <in>Connection.cpp</in>
-        <in>Header.cpp</in>
+        <in>Head.cpp</in>
+        <in>Manager.cpp</in>
         <in>Request.cpp</in>
       </df>
       <df name="test">
@@ -119,6 +123,25 @@
           </ccTool>
         </makeTool>
       </makefileType>
+      <folder path="libfcgicpp">
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="libfcgicpp/test">
+        <ccTool>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
       <item path="include/role/Authorizer.hpp" ex="true" tool="3" flavor="0">
       </item>
       <item path="include/role/Filter.hpp" ex="true" tool="3" flavor="0">
@@ -134,7 +157,7 @@
           </incDir>
         </ccTool>
       </item>
-      <item path="src/Header.cpp" ex="false" tool="1" flavor="4">
+      <item path="src/Head.cpp" ex="false" tool="1" flavor="0">
         <ccTool>
           <incDir>
             <pElem>include</pElem>
@@ -170,11 +193,6 @@
         </ccTool>
       </item>
       <item path="test/Client.cpp" ex="false" tool="1" flavor="4">
-        <ccTool>
-          <incDir>
-            <pElem>include</pElem>
-          </incDir>
-        </ccTool>
       </item>
       <item path="test/index.cpp" ex="false" tool="1" flavor="4">
       </item>
