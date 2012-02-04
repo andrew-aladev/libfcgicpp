@@ -57,11 +57,11 @@ namespace fcgi {
 		void reset();
 	};
 
-	typedef boost::error_info<struct tag_bad_number, int> bad_number;
+	typedef boost::error_info<struct tag_bad_number, uint32_t> bad_number;
 
-	struct HeadInvalidException : public Exception {
+	struct HeadException : public Exception {
 
-		HeadInvalidException(string msg) : Exception(msg)
+		HeadException(string msg) : Exception(msg)
 		{
 		}
 	};

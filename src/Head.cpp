@@ -38,17 +38,13 @@ void fcgi::Head::resolveHead(const char *str)
 	if (this->head.version != FCGI_VERSION) {
 		stringstream text;
 		text << "Heads version should be equals " << FCGI_VERSION;
-		BOOST_THROW_EXCEPTION(
-			HeadInvalidException(text.str()) << bad_number((int) this->head.version)
-			);
+		BOOST_THROW_EXCEPTION(HeadException(text.str()) << bad_number(this->head.version));
 	}
 
 	if (this->head.type <= 0 || this->head.type > FCGI_MAXTYPE) {
 		stringstream text;
 		text << "Head type should belongs to [0, " << FCGI_MAXTYPE << "]";
-		BOOST_THROW_EXCEPTION(
-			HeadInvalidException(text.str()) << bad_number((int) this->head.type)
-			);
+		BOOST_THROW_EXCEPTION(HeadException(text.str()) << bad_number(this->head.type));
 	}
 
 	cout << "<----Head---->" << endl;

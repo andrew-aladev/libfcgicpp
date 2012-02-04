@@ -34,6 +34,7 @@ add_executable (
 	${PROJECT_SOURCE_DIR}/src/body/EndRequest.cpp
 	${PROJECT_SOURCE_DIR}/src/body/Unknown.cpp
 	${PROJECT_SOURCE_DIR}/src/body/Params.cpp
+	${PROJECT_SOURCE_DIR}/src/body/Stdin.cpp
 	)
 target_link_libraries (
 	${PROJECT_NAME}

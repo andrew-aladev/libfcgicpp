@@ -2,6 +2,7 @@
 #ifndef PARAMS_HPP
 #define	PARAMS_HPP
 #include "Body.hpp"
+#include <boost/unordered_map.hpp>
 #include <string>
 
 namespace fcgi {
@@ -9,7 +10,8 @@ namespace fcgi {
 
 	class Params : public Body {
 	private:
-		string body;
+		typedef boost::unordered_map<string, string> map_type;
+		map_type map;
 	public:
 		Params(const char *str, uint16_t content_length);
 	};

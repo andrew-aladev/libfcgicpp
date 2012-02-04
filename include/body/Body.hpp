@@ -23,11 +23,11 @@ namespace fcgi {
 		}
 	};
 
-	typedef boost::error_info<struct tag_bad_number, int> bad_number;
+	typedef boost::error_info<struct tag_bad_number, uint32_t> bad_number;
 
-	struct RequestBodyInvalidException : public Exception {
+	struct BodyException : public Exception {
 
-		RequestBodyInvalidException(string msg) : Exception(msg)
+		BodyException(string msg) : Exception(msg)
 		{
 		}
 	};

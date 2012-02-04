@@ -40,10 +40,8 @@ void fcgi::Manager::read_body(const char *str)
 	case FCGI_GET_VALUES_RESULT:
 	default:
 		stringstream text;
-		text << "Could not resolve body with type " << (int) this->head.getType();
-		BOOST_THROW_EXCEPTION(
-			HeadInvalidException(text.str()) << bad_number((int) this->head.getType())
-			);
+		text << "Could not resolve body with type " << this->head.getType();
+		BOOST_THROW_EXCEPTION(HeadException(text.str()) << bad_number(this->head.getType()));
 		break;
 	}
 	this->body = NULL;

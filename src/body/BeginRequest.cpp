@@ -11,9 +11,7 @@ fcgi::BeginRequest::BeginRequest(const char *str, uint16_t content_length) : fcg
 	if (this->role < 0 || this->role > FCGI_MAXROLE) {
 		stringstream text;
 		text << "BeginRequest role should belongs to [0, " << FCGI_MAXROLE << "]";
-		BOOST_THROW_EXCEPTION(
-			RequestBodyInvalidException(text.str()) << bad_number((int) this->role)
-			);
+		BOOST_THROW_EXCEPTION(BodyException(text.str()) << bad_number(this->role));
 	}
 
 	cout << "<----BeginRequest---->" << endl;
