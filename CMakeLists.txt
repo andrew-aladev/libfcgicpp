@@ -15,7 +15,7 @@ endif()
 set (Boost_USE_MULTITHREADED on)
 
 find_package (Threads)
-find_package (Boost COMPONENTS system REQUIRED)
+find_package (Boost COMPONENTS system thread REQUIRED)
 
 include_directories (
 	${PROJECT_SOURCE_DIR}/include
@@ -25,7 +25,8 @@ include_directories (
 add_executable (
     ${PROJECT_NAME}
 	${PROJECT_SOURCE_DIR}/test/index.cpp
-	${PROJECT_SOURCE_DIR}/test/Client.cpp
+	${PROJECT_SOURCE_DIR}/src/IOServicePool.cpp
+	${PROJECT_SOURCE_DIR}/src/Thread.cpp
 	${PROJECT_SOURCE_DIR}/src/Connection.cpp
 	${PROJECT_SOURCE_DIR}/src/Manager.cpp
 	${PROJECT_SOURCE_DIR}/src/Head.cpp
@@ -48,9 +49,9 @@ set (CPACK_GENERATOR "DEB")
 set (CPACK_DEBIAN_PACKAGE_ARCHITECTURE ${DPKG_ARCH})
 set (CPACK_PACKAGE_NAME "${PROJECT_NAME}")
 
-set (CPACK_PACKAGE_VERSION "0.1.2-0")
+set (CPACK_PACKAGE_VERSION "0.1.4-0")
 
-set (CPACK_DEBIAN_PACKAGE_DEPENDS "libboost-system1.46.1 (>= 1.46.1-7)")
+set (CPACK_DEBIAN_PACKAGE_DEPENDS "libboost-system1.46.1 (>= 1.46.1-8), libboost-thread1.46.1 (1.46.1-8)")
 
 set (CPACK_DEBIAN_PACKAGE_MAINTAINER "Andrew Aladev <aladjev.andrew@gmail.com>")
 set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "Fastcgi realization in c++")

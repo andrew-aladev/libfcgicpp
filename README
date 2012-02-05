@@ -1,5 +1,12 @@
 Licensed under GNU Lesser General Public License. http://www.gnu.org/licenses/lgpl.txt
 Project just started. When all specification will be satified, release (tag on github) will be created.
+
+Goals to be implemented:
+1. full asynchronous event model both client and server
+2. io_service per cpu design
+see for tests http://think-async.com/Asio/LinuxPerformanceImprovements
+very simple pretty example http://www.boost.org/doc/libs/1_46_1/doc/html/boost_asio/example/http/server2/io_service_pool.cpp
+
 Project is developed with cmake 2.8.5, boost 1.46.1. I prefer netbeans for code highlighting
 I am not using TDD to develop. Tests will be created later
 Nginx conf to test:

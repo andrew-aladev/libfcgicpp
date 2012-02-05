@@ -6,13 +6,19 @@
         <df name="_CPack_Packages">
           <df name="Linux">
             <df name="DEB">
-              <df name="libfcgicpp_0.1.2-0_amd64">
+              <df name="libfcgicpp_0.1.4-0_amd64">
                 <df name="usr">
                   <df name="local">
                     <df name="bin">
+                      <in>libfcgicpp</in>
                     </df>
                   </df>
                 </df>
+                <in>control</in>
+                <in>control.tar.gz</in>
+                <in>data.tar.gz</in>
+                <in>debian-binary</in>
+                <in>md5sums</in>
               </df>
             </df>
           </df>
@@ -56,17 +62,12 @@
           <in>Stdin.hpp</in>
           <in>Unknown.hpp</in>
         </df>
-        <df name="role">
-          <in>Authorizer.hpp</in>
-          <in>Filter.hpp</in>
-          <in>Responder.hpp</in>
-          <in>Role.hpp</in>
-        </df>
         <in>Connection.hpp</in>
         <in>Head.hpp</in>
+        <in>IOServicePool.hpp</in>
         <in>Manager.hpp</in>
-        <in>Request.hpp</in>
         <in>Spec.hpp</in>
+        <in>Thread.hpp</in>
         <in>Util.hpp</in>
       </df>
       <df name="src">
@@ -78,16 +79,13 @@
           <in>Stdin.cpp</in>
           <in>Unknown.cpp</in>
         </df>
-        <df name="role">
-        </df>
         <in>Connection.cpp</in>
         <in>Head.cpp</in>
+        <in>IOServicePool.cpp</in>
         <in>Manager.cpp</in>
-        <in>Request.cpp</in>
+        <in>Thread.cpp</in>
       </df>
       <df name="test">
-        <in>Client.cpp</in>
-        <in>Client.hpp</in>
         <in>index.cpp</in>
       </df>
     </df>
@@ -142,14 +140,6 @@
           </incDir>
         </ccTool>
       </folder>
-      <item path="include/role/Authorizer.hpp" ex="true" tool="3" flavor="0">
-      </item>
-      <item path="include/role/Filter.hpp" ex="true" tool="3" flavor="0">
-      </item>
-      <item path="include/role/Responder.hpp" ex="true" tool="3" flavor="0">
-      </item>
-      <item path="include/role/Role.hpp" ex="true" tool="3" flavor="0">
-      </item>
       <item path="src/Connection.cpp" ex="false" tool="1" flavor="4">
         <ccTool>
           <incDir>
@@ -191,8 +181,6 @@
             <pElem>include</pElem>
           </incDir>
         </ccTool>
-      </item>
-      <item path="test/Client.cpp" ex="false" tool="1" flavor="4">
       </item>
       <item path="test/index.cpp" ex="false" tool="1" flavor="4">
       </item>
