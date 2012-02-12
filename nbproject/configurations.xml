@@ -10,15 +10,9 @@
                 <df name="usr">
                   <df name="local">
                     <df name="bin">
-                      <in>libfcgicpp</in>
                     </df>
                   </df>
                 </df>
-                <in>control</in>
-                <in>control.tar.gz</in>
-                <in>data.tar.gz</in>
-                <in>debian-binary</in>
-                <in>md5sums</in>
               </df>
             </df>
           </df>

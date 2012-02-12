@@ -13,13 +13,14 @@
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/asio.hpp>
 #include "Manager.hpp"
+#include "Util.hpp"
 
 namespace fcgi {
-	using namespace boost::asio::local;
+	using namespace std;
+	using namespace boost;
 	using namespace boost::system;
 	using namespace boost::asio;
-	using namespace boost;
-	using namespace std;
+	using namespace boost::asio::local;
 
 	class Connection : public enable_shared_from_this<Connection> {
 	private:
@@ -42,8 +43,8 @@ namespace fcgi {
 		void close(error_code &ec);
 
 	public:
-		typedef shared_ptr<Connection> pointer;
-
+		typedef shared_ptr<Connection> connection_ptr;
+		
 		void start_accept();
 
 		void bind_read_head();
@@ -52,8 +53,10 @@ namespace fcgi {
 		stream_protocol::socket & getSocket();
 		virtual ~Connection();
 
-		static pointer create(io_service &io_service);
+		static connection_ptr create(io_service_ptr io);
 	};
+	
+	typedef Connection::connection_ptr connection_ptr;
 }
 
 #endif	/* CONNECTION_HPP */

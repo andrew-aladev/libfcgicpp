@@ -8,23 +8,39 @@
 #include <string>
 #include <sstream>
 #include <boost/exception/all.hpp>
+#include <boost/asio.hpp>
+#include <boost/thread.hpp>
 
 namespace fcgi {
 	using namespace std;
+	using namespace boost;
+	using namespace boost::asio;
+	using namespace boost::asio::local;
 
-	class Exception : public virtual exception, public virtual boost::exception {
+	typedef shared_ptr<io_service> io_service_ptr;
+	typedef weak_ptr<io_service> io_service_weak_ptr;
+	typedef shared_ptr<io_service::work> io_service_work_ptr;
+	typedef shared_ptr<stream_protocol::acceptor> acceptor_ptr;
+	typedef shared_ptr<thread> thread_ptr;
+
+	class Exception : public virtual std::exception, public virtual boost::exception {
 	private:
 		string msg;
-		
+
 	public:
-		Exception(string msg) {
+
+		Exception(string msg)
+		{
 			this->msg = msg;
 		}
-		virtual ~Exception() throw() {
+
+		virtual ~Exception() throw()
+		{
 			;
 		}
 
-		virtual const char* what() const throw () {
+		virtual const char* what() const throw()
+		{
 			return this->msg.c_str();
 		}
 	};

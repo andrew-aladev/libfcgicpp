@@ -8,6 +8,7 @@
 using namespace std;
 using namespace boost;
 using namespace boost::asio;
+using namespace boost::asio::local;
 
 fcgi::IOServicePool::IOServicePool(const string &unix_socket, size_t pool_size) : unix_socket(unix_socket)
 {
@@ -21,25 +22,43 @@ fcgi::IOServicePool::IOServicePool(const string &unix_socket, size_t pool_size) 
 		this->io_services.push_back(io);
 		this->io_services_work.push_back(work);
 	}
-	this->next_io_service = this->io_services.begin();
+	this->current_io_service = this->io_services.begin();
+	this->acceptor = acceptor_ptr(new stream_protocol::acceptor(
+		*(*(this->current_io_service)),
+		stream_protocol::endpoint(this->unix_socket),
+		true
+		));
 }
 
 void fcgi::IOServicePool::run()
 {
 	list<io_service_ptr>::iterator it;
-	list<thread_ptr> threads;
-	exception_ptr error;
+	list<custom_thread_ptr> threads;
 	for (it = this->io_services.begin(); it != this->io_services.end(); it++) {
-		threads.push_back(thread_ptr(new Thread(this->unix_socket, *(*it), error)));
+		threads.push_back(custom_thread_ptr(
+			new Thread(
+			this->unix_socket,
+			*it,
+			this->acceptor,
+			bind(&IOServicePool::error_callback, this, _1))
+			));
 	}
 
-	list<thread_ptr>::iterator jt;
+	list<custom_thread_ptr>::iterator jt;
 	for (jt = threads.begin(); jt != threads.end(); jt++) {
 		(*jt)->join();
 	}
-	if (error) {
-		rethrow_exception(error);
+	if (this->error) {
+		rethrow_exception(this->error);
 	}
+}
+
+//this will be invoked in child thread
+
+void fcgi::IOServicePool::error_callback(const exception_ptr& error)
+{
+	this->error = error;
+	this->stop();
 }
 
 void fcgi::IOServicePool::stop()
@@ -50,12 +69,15 @@ void fcgi::IOServicePool::stop()
 	}
 }
 
-io_service& fcgi::IOServicePool::get_io_service()
+void fcgi::IOServicePool::next_io_service()
 {
-	io_service_ptr io_service = *this->next_io_service;
-	this->next_io_service++;
-	if (this->next_io_service == this->io_services.end()) {
-		this->next_io_service = this->io_services.begin();
+	this->current_io_service++;
+	if(this->current_io_service == this->io_services.end()) {
+		this->current_io_service = this->io_services.begin();
 	}
-	return *io_service;
+}
+
+fcgi::IOServicePool::~IOServicePool()
+{
+	::unlink(this->unix_socket.c_str());
 }

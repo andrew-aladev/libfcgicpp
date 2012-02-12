@@ -5,37 +5,36 @@
 #ifndef THREAD_HPP
 #define	THREAD_HPP
 
-#include <boost/exception_ptr.hpp>
+#include <boost/function.hpp>
 #include <boost/thread.hpp>
 #include <boost/asio.hpp>
+#include <boost/exception_ptr.hpp>
 #include "Connection.hpp"
+#include "Util.hpp"
 
 namespace fcgi {
 	using namespace std;
 	using namespace boost;
-	using namespace boost::system;
 	using namespace boost::asio;
 	using namespace boost::asio::local;
 
 	class Thread {
 	private:
-		typedef shared_ptr<thread> thread_ptr;
-		typedef shared_ptr<stream_protocol::acceptor> acceptor_ptr;
-
 		string unix_socket;
 		thread_ptr work;
+		io_service_ptr io;
 		acceptor_ptr acceptor;
-		Connection::pointer connection;
-		exception_ptr& error;
+		connection_ptr connection;
+		function<void (const exception_ptr& error) > error_callback;
 
 		void start_accept();
 		void accept();
 
 	public:
-		Thread(const string &unix_socket, io_service& io_service, exception_ptr& error);
+
+		Thread(const string &unix_socket, io_service_ptr io_service, acceptor_ptr acceptor, function<void (const exception_ptr& error) > error_callback);
 		void handle_accept(const error_code& error);
 		void join();
-		virtual ~Thread();
 	};
 }
 

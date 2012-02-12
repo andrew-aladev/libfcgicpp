@@ -19,9 +19,11 @@ fcgi::Connection::~Connection()
 	this->socket.close();
 }
 
-fcgi::Connection::pointer fcgi::Connection::create(io_service &io_service)
+fcgi::connection_ptr fcgi::Connection::create(io_service_ptr io)
 {
-	return fcgi::Connection::pointer(new fcgi::Connection(io_service));
+	return connection_ptr(new fcgi::Connection(
+		*(io.get())
+		));
 }
 
 void fcgi::Connection::start_accept()

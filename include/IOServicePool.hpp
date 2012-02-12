@@ -11,7 +11,6 @@
 #include <boost/thread.hpp>
 #include <boost/shared_ptr.hpp>
 #include "Thread.hpp"
-#include "Util.hpp"
 
 namespace fcgi {
 	using namespace std;
@@ -20,21 +19,22 @@ namespace fcgi {
 
 	class IOServicePool : private noncopyable {
 	private:
-		typedef shared_ptr<Thread> thread_ptr;
-		typedef shared_ptr<io_service> io_service_ptr;
-		typedef shared_ptr<io_service::work> io_service_work_ptr;
+		typedef shared_ptr<Thread> custom_thread_ptr;
 
 		string unix_socket;
+		acceptor_ptr acceptor;
+		exception_ptr error;
 		list<io_service_ptr> io_services;
 		list<io_service_work_ptr> io_services_work;
-		list<io_service_ptr>::iterator next_io_service;
-
+		list<io_service_ptr>::iterator current_io_service;
 	public:
 
 		explicit IOServicePool(const string &unix_socket, size_t pool_size);
 		void run();
 		void stop();
-		io_service& get_io_service();
+		void error_callback(const exception_ptr& error);
+		void next_io_service();
+		virtual ~IOServicePool();
 	};
 
 	typedef error_info<struct tag_bad_number, uint32_t> bad_number;

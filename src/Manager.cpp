@@ -37,7 +37,7 @@ void fcgi::Manager::read_body(const char *str)
 	case FCGI_ABORT_REQUEST:
 	case FCGI_STDIN:
 		this->body = new Stdin(str, this->head.getBodyLength());
-		//break;
+		break;
 	case FCGI_STDOUT:
 	case FCGI_STDERR:
 	case FCGI_DATA:

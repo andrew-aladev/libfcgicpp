@@ -5,7 +5,6 @@
 
 #include <boost/bind.hpp>
 #include "Thread.hpp"
-#include "Util.hpp"
 
 using namespace std;
 using namespace boost;
@@ -13,39 +12,33 @@ using namespace boost::system;
 using namespace boost::asio;
 using namespace boost::asio::local;
 
-fcgi::Thread::Thread(const string& _unix_socket, io_service& io_service, exception_ptr& _error)
-: unix_socket(_unix_socket), error(_error)
+fcgi::Thread::Thread(const string& _unix_socket, io_service_ptr _io, acceptor_ptr _acceptor, function<void (const exception_ptr& error) > _error_callback)
+: io(_io), acceptor(_acceptor), unix_socket(_unix_socket), error_callback(_error_callback)
 {
-	::unlink(this->unix_socket.c_str());
-	this->acceptor = acceptor_ptr(new stream_protocol::acceptor(
-		io_service,
-		stream_protocol::endpoint(this->unix_socket)
-		));
 	this->work = thread_ptr(new thread(
 		bind(&Thread::start_accept, this)
 		));
 }
 
 void fcgi::Thread::start_accept()
-{
+{	
 	try {
 		this->accept();
-		this->acceptor.get()->io_service().run();
+		this->io.get()->run();
 	} catch (boost::exception &e) {
-		this->error = current_exception();
+		this->error_callback(current_exception());
 	} catch (std::exception &e) {
 		enable_current_exception(e);
-		this->error = current_exception();
+		this->error_callback(current_exception());
 	}
 }
 
 void fcgi::Thread::accept()
 {
-	stream_protocol::acceptor* acc = this->acceptor.get();
-	this->connection = Connection::create(acc->io_service());
-	acc->async_accept(
+	this->connection = Connection::create(this->io);
+	this->acceptor->async_accept(
 		this->connection.get()->getSocket(),
-		boost::bind(
+		bind(
 		&Thread::handle_accept, this, placeholders::error
 		));
 }
@@ -54,7 +47,6 @@ void fcgi::Thread::handle_accept(const error_code& ec)
 {
 	if (!ec) {
 		this->connection.get()->start_accept();
-		this->accept();
 	} else {
 		throw system_error(ec);
 	}
@@ -63,9 +55,4 @@ void fcgi::Thread::handle_accept(const error_code& ec)
 void fcgi::Thread::join()
 {
 	this->work->join();
-}
-
-fcgi::Thread::~Thread()
-{
-	::unlink(this->unix_socket.c_str());
 }
