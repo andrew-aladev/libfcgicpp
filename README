@@ -18,7 +18,7 @@ Nginx conf to test:
                 fastcgi_param SCRIPT_NAME /path/to/cpp/libfcgicpp/lifcgicpp;
                 fastcgi_param PATH_INFO $fastcgi_path_info;
         }
-Please check that nginx has enough rights to access fcgi_test.sock which is created by libfcgicpp binary
+Please check that nginx has enough rights to access fcgi_test.sock which is created by libfcgicpp binary.
 
 For debug in netbeans check:
 1. "Project Properties -> Code Assistance -> C++ Compiler -> Include Directories" add "include" folder
